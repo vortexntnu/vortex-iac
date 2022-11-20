@@ -28,24 +28,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: list env
-        run: env
-
       # Runs a set of commands using the runners shell
       - name: Send msg to Teams
-        run: |
-          curl --location --request POST $webhook \
-          -- header 'Content-Type: application/json' \
-          --data-raw '{
-            "@type": "MessageCard",
-            "@context": "http://schema.org/extensions",
-            "themeColor": "0076D7",
-            "summary": "Hei",
-            "sections": [{
-                "activityTitle": "hei",
-                "activitySubtitle": "'"${{ steps.date.outputs.date }}"'",
-                "type": "TextBlock",
-                "text": "'"${{ github.event.head_commit.message }}"'",
-                "markdown": true
-            }
-          }'
+        run:
+          curl --location --request POST $webhook -- header 'Content-Type: application/json' --data-raw '{"@type": "MessageCard","@context": "http://schema.org/extensions","themeColor": "0076D7","summary": "Hei","sections": [{"activityTitle": "hei","activitySubtitle": "'"${{ steps.date.outputs.date }}"'","type": "TextBlock","text": "'"${{ github.event.head_commit.message }}"'","markdown": true}]'
