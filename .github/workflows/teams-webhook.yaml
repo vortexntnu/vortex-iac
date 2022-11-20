@@ -31,9 +31,6 @@ jobs:
       - name: list env
         run: env
 
-      - name: list github
-        run: github
-
       # Runs a set of commands using the runners shell
       - name: Send msg to Teams
         run: |
@@ -46,18 +43,9 @@ jobs:
             "summary": "Hei",
             "sections": [{
                 "activityTitle": "hei",
-                "activitySubtitle": "'"$time_stamp"'",
-                "activityImage": "https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png",
+                "activitySubtitle": "'"${{ steps.date.outputs.date }}"'",
                 "type": "TextBlock",
-                "text": "'"$announce_content"'",
+                "text": "'"${{ github.event.head_commit.message }}"'",
                 "markdown": true
-            },{ 
-                "facts": ['"$facts"'],
-                "markdown": true
-            },{
-                "facts": [{
-                    "name": "URL",
-                    "value": "'"$web_url"'"
-                }]
-            }]
+            }
           }'
