@@ -31,6 +31,9 @@ jobs:
       - name: list env
         run: env
 
+      - name: list github
+        run: github
+
       # Runs a set of commands using the runners shell
       - name: Send msg to Teams
         run: |
@@ -40,9 +43,9 @@ jobs:
             "@type": "MessageCard",
             "@context": "http://schema.org/extensions",
             "themeColor": "0076D7",
-            "summary": "'"$message"'",
+            "summary": "Hei",
             "sections": [{
-                "activityTitle": "'"$message"'",
+                "activityTitle": "hei",
                 "activitySubtitle": "'"$time_stamp"'",
                 "activityImage": "https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png",
                 "type": "TextBlock",
