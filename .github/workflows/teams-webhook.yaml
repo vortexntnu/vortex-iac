@@ -13,6 +13,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  webhook: https://studntnu.webhook.office.com/webhookb2/3ead07fd-2966-4a7e-ac5e-19f88fb5ff77@09a10672-822f-4467-a5ba-5bb375967c05/IncomingWebhook/3f5b74d5cd884cb9bb24bf53ec4da1e7/3011f2d9-c189-4900-87e9-3739018254f0
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -25,8 +28,33 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: list env
+        run: env
+
       # Runs a set of commands using the runners shell
       - name: Send msg to Teams
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          curl --location --request POST $webhook \
+          -- header 'Content-Type: application/json' \
+          --data-raw '{
+            "@type": "MessageCard",
+            "@context": "http://schema.org/extensions",
+            "themeColor": "0076D7",
+            "summary": "'"$message"'",
+            "sections": [{
+                "activityTitle": "'"$message"'",
+                "activitySubtitle": "'"$time_stamp"'",
+                "activityImage": "https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png",
+                "type": "TextBlock",
+                "text": "'"$announce_content"'",
+                "markdown": true
+            },{ 
+                "facts": ['"$facts"'],
+                "markdown": true
+            },{
+                "facts": [{
+                    "name": "URL",
+                    "value": "'"$web_url"'"
+                }]
+            }]
+          }'
