@@ -1,0 +1,12 @@
+# config 
+
+# vortex-auv repo
+vortex-auv:
+  # repository id, int
+  repository-id: 111111
+  # manage repo, bool
+  managed: False
+  # list of workflows for this repository
+  workflow:
+    # add pyhton formater as workflow, bool
+    python-formater: True

@@ -2,9 +2,9 @@
 Github manager, control github actions and workflows of vortex repositories
 
 ```yaml
-Responsible: Vortex - DevOps
-Contact: fabiako@ntnu.no
-Working: False
+Responsible:    Vortex - DevOps
+Contact:        fabiako@ntnu.no
+Working:        False
 ```
 
 ## Goal
