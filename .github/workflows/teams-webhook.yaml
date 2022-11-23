@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Send msg to Teams
 
 # Controls when the workflow will run
 on:
@@ -30,17 +30,25 @@ jobs:
 
       # Send msg to teams
       - name: Send msg to Teams
-        run: |
-          curl --location --request POST $webhook \ 
-          --header 'Content-Type: application/json' \
-          --data-raw '{
+        run: curl --location --request POST $webhook --header 'Content-Type: application/json' --data-raw '{
             "@type": "MessageCard",
             "@context": "http://schema.org/extensions",
             "themeColor": "0076D7",
             "summary": "${{ github.event.head_commit.message }}",
             "sections": [{
-              "activityTitle": "${{ github.event.head_commit.message }}",
-              "activitySubtitle": "'"${{ steps.date.outputs.date }}"'",
+              "activityTitle": "${{ GITHUB_TRIGGERING_ACTOR }} ${{ GITHUB_EVENT_NAME }} to ${{ GITHUB_REPOSITORY_NAME }}",
+              "activitySubtitle": "${{ steps.date.outputs.date }}"'",
+              "activityImage": "https://github.githubassets.com/images/modules/logos_page/Octocat.png",
+              "facts": [{
+                "name": "Repository"
+                "value": ${{ GITHUB_REPOSITORY_NAME }}
+              },{
+                "name": "Event",
+                "value": "${{ GITHUB_EVENT_NAME }}"
+              },{
+                "name": "Message"
+                "value": "${{ github.event.head_commit.message }}"
+              }],
               "markdown": true
-              }]
-            }'
+            }]
+          }'
