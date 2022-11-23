@@ -15,7 +15,7 @@ on:
 
 env:
   webhook: https://studntnu.webhook.office.com/webhookb2/3ead07fd-2966-4a7e-ac5e-19f88fb5ff77@09a10672-822f-4467-a5ba-5bb375967c05/IncomingWebhook/3f5b74d5cd884cb9bb24bf53ec4da1e7/3011f2d9-c189-4900-87e9-3739018254f0
-
+  TIMESTAMP: $(date "+%Y/%m/%d - %H:%M:%S")
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,5 +32,4 @@ jobs:
       # Send msg to teams
       - name: Send msg to Teams
         run: |
-          TIMESTAMP = $(date "+%Y/%m/%d - %H:%M:%S")
           curl --location --request POST $webhook --header 'Content-Type: application/json' --data-raw '{"@type": "MessageCard","@context": "http://schema.org/extensions","themeColor": "0076D7","summary": "${{ github.event.head_commit.message }}","sections": [{"activityTitle": "GitHub auto message","activitySubtitle": "${{ TIMESTAMP }}","activityImage": "https://github.githubassets.com/images/modules/logos_page/Octocat.png","facts": [{"name": "Repository","value": "${{ github.repository }}"},{"name": "Event","value": "${{ GITHUB_EVENT_NAME }}"},{"name": "Message","value": "${{ github.event.head_commit.message }}"}],"markdown": true}]}'
