@@ -29,9 +29,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: env
-        run: github
-
       # Send msg to teams
       - name: Send msg to Teams
         run: |
