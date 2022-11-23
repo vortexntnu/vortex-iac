@@ -28,7 +28,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: env
+        run: github
+
       # Send msg to teams
       - name: Send msg to Teams
         run: |
-          curl --location --request POST $webhook --header 'Content-Type: application/json' --data-raw '{"@type": "MessageCard","@context": "http://schema.org/extensions","themeColor": "0076D7","summary": "${{ github.event.head_commit.message }}","sections": [{"activityTitle": "${{ github.actor }} ${{ github.event.name }} to ${{ github.repository.name }}","activitySubtitle": "${{ steps.date.outputs.date }}"'","activityImage": "https://github.githubassets.com/images/modules/logos_page/Octocat.png","facts": [{"name": "Repository","value": ${{ github.repository.name }}},{"name": "Event","value": "${{ github.event.name }}"},{"name": "Message","value": "${{ github.event.head_commit.message }}"}],"markdown": true}]}'
+          curl --location --request POST $webhook --header 'Content-Type: application/json' --data-raw '{"@type": "MessageCard","@context": "http://schema.org/extensions","themeColor": "0076D7","summary": "${{ github.event.head_commit.message }}","sections": [{"activityTitle": "${{ github.actor }} ${{ github.event.name }} to ${{ github.repository.name }}","activitySubtitle": "${{ steps.date.outputs.date }}","activityImage": "https://github.githubassets.com/images/modules/logos_page/Octocat.png","facts": [{"name": "Repository","value": "${{ github.repository.name }"}},{"name": "Event","value": "${{ github.event.name }}"},{"name": "Message","value": "${{ github.event.head_commit.message }}"}],"markdown": true}]}'
