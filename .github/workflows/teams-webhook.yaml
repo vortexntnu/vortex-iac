@@ -31,6 +31,7 @@ jobs:
       # Send msg to teams
       - name: Send msg to Teams
         run: |
+          timestamp = $(date +'%Y/%m/%d - %H:%M:%S')
           curl --location --request POST $webhook \
             --header 'Content-Type: application/json' \
             --data-raw '{
@@ -40,7 +41,7 @@ jobs:
               "summary": "${{ github.event.head_commit.message }}",
               "sections": [{
                 "activityTitle": "GitHub auto message",
-                "activitySubtitle": "${{ $(date +'%Y/%m/%d - %H:%M:%S') }}",
+                "activitySubtitle": "${{ echo $timestamp }}",
                 "activityImage": "https://github.githubassets.com/images/modules/logos_page/Octocat.png",
                 "facts": [{
                   "name": "Repository",
