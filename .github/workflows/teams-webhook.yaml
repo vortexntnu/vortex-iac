@@ -41,7 +41,7 @@ jobs:
               "summary": "${{ github.event.head_commit.message }}",
               "sections": [{
                 "activityTitle": "GitHub auto message",
-                "activitySubtitle": "${{ echo $timestamp }}",
+                "activitySubtitle": "'"$timestamp"'",
                 "activityImage": "https://github.githubassets.com/images/modules/logos_page/Octocat.png",
                 "facts": [{
                   "name": "Repository",
