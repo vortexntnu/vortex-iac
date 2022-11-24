@@ -40,14 +40,14 @@ jobs:
               "summary": "${{ github.event.head_commit.message }}",
               "sections": [{
                 "activityTitle": "GitHub auto message",
-                "activitySubtitle": "$( date "+%Y/%m/%d - %H:%M:%S" )",
+                "activitySubtitle": "$(date +'%Y/%m/%d - %H:%M:%S')",
                 "activityImage": "https://github.githubassets.com/images/modules/logos_page/Octocat.png",
                 "facts": [{
                   "name": "Repository",
                   "value": "${{ github.repository }}"
                 },{
                   "name": "Event",
-                  "value": `"` $GITHUB_EVENT_NAME `"`
+                  "value": "${{ github.event_name }}"
                 },{
                   "name": "Message",
                   "value": "${{ github.event.head_commit.message }}"
