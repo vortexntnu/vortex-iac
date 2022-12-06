@@ -33,7 +33,6 @@ jobs:
       - name: Send push msg to Teams
         if: ${{ env.active == 'True' }}
         run: |
-          apt install git && \
           curl --location --request POST $webhook \
             --header 'Content-Type: application/json' \
             --data-raw '{
@@ -41,14 +40,14 @@ jobs:
               "@context": "https://schema.org/extensions",
               "summary": "${{ github.event.head_commit.message }}",
               "sections": [{
-                "activityTitle": "${{ github.actor.login }} pushed new content to ${{ github.repository }}",
+                "activityTitle": "${{ github.event.actor.display_login }} pushed new content to ${{ github.repository }}",
                 "activitySubtitle": "'"$(TZ=Europe/Oslo date +'%Y/%m/%d - %H:%M:%S %z')"'",
                 "activityImage": "https://github.com/amido/azure-vector-icons/raw/master/renders/git-deployment.png",
                 "facts": [{
-                  "name": "Latest commit message \r",
+                  "name": "Latest commit message \n",
                   "value": "${{ github.event.head_commit.message }}"
                 },
-                  "name": "Changes \r",
+                  "name": "Changes \n",
                   "value": "'"$(git diff-tree --no-commit-id --stat ${{ github.event.before }}^ ${{ github.event.after }})"'"
                 }],
                 "markdown": true
@@ -60,8 +59,5 @@ jobs:
                   "os": "default",
                   "uri": "${{ github.event.repository.url }}"
                 }]
-              }],
-              "msteams": {
-                "width": "Full"
-              }
+              }]
             }'
