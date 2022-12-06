@@ -33,6 +33,7 @@ jobs:
       - name: Send push msg to Teams
         if: ${{ env.active == 'True' }}
         run: |
+          apt install git && \
           curl --location --request POST $webhook \
             --header 'Content-Type: application/json' \
             --data-raw '{
