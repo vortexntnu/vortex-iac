@@ -14,6 +14,7 @@ on:
   workflow_dispatch:
 
 env:
+  active: True
   webhook: https://studntnu.webhook.office.com/webhookb2/3ead07fd-2966-4a7e-ac5e-19f88fb5ff77@09a10672-822f-4467-a5ba-5bb375967c05/IncomingWebhook/3f5b74d5cd884cb9bb24bf53ec4da1e7/3011f2d9-c189-4900-87e9-3739018254f0
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -39,19 +40,24 @@ jobs:
               "themeColor": "0076D7",
               "summary": "${{ github.event.head_commit.message }}",
               "sections": [{
-                "activityTitle": "GitHub auto message",
+                "activityTitle": "${{ github.event.actor.login }} pushed new content to ${{ github.repository }}",
                 "activitySubtitle": "'"$(TZ=Europe/Oslo date +'%Y/%m/%d - %H:%M:%S %z')"'",
                 "activityImage": "https://github.com/amido/azure-vector-icons/raw/master/renders/git-deployment.png",
                 "facts": [{
-                  "name": "Repository",
-                  "value": "${{ github.repository }}"
-                },{
-                  "name": "Event",
-                  "value": "${{ github.event_name }}"
-                },{
                   "name": "Message",
                   "value": "${{ github.event.head_commit.message }}"
+                },{
+                  "name": "Changed lines",
+                  "value": "${{ github.event.changes }}"
                 }],
                 "markdown": true
+              }],
+              "potentialAction": [{
+                "@type": "OpenUri",
+                "name": "Repo",
+                "targets": [{
+                  "os": "default",
+                  "uri": "${{ github.event.repository.url }}"
+                }]
               }]
             }'
