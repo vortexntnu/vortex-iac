@@ -59,6 +59,12 @@ jobs:
                 "targets": [{
                   "os": "default",
                   "uri": "${{ github.event.repository.url }}"
+                },{
+                "@type": "OpenUri",
+                "name": "Commit",
+                "targets": [{
+                  "os": "default",
+                  "uri": "${{ github.event.head_commit.url }}"
                 }]
               }]
             }'
