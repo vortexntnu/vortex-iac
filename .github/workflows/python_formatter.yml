@@ -1,8 +1,8 @@
 name: Format python code
 on: 
-  push:
+  workflow_call:
     paths:
-    - '**.py'
+      - '**.py'
 jobs:
   autoyapf:
     runs-on: ubuntu-latest
