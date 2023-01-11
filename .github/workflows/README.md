@@ -2,7 +2,7 @@
 
 ## Formatters
 ### format-check-cpp.yml
-- Checks format of C and C++ files
+- Checks format of C and C++ files in the repo
 - Workflow fails if format is wrong
 - Uses Clang formatter
 
@@ -12,7 +12,7 @@
 - Uses Clang formatter
 
 ### format-check-python.yml
-- Checks format of python files
+- Checks format of python files in the repo
 - Workflow fails if format is wrong
 - Uses black-format-check
 
