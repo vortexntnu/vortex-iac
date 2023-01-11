@@ -1,6 +1,7 @@
 name: Run clang-format Linter
 
-on: [push]
+on:
+  workflow-call:
 
 jobs:
   build:

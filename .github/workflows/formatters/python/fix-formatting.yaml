@@ -1,7 +1,8 @@
 #Can be combined with black-format-check to make a workflow that does both?
 name: Run automated formatting
 
-on: [pull_request]
+on: 
+  workflow-call:
 
 env:
   PYTHON_DIR: './Python/'

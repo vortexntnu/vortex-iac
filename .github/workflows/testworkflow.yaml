@@ -1,8 +1,0 @@
-name: format
-on:
-  push:
-  workflow_dispatch:
-
-jobs:
-  format_python:
-    uses: vortexntnu/github-iac/.github/workflows/python_formatter.yml@main
