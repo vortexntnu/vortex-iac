@@ -4,7 +4,7 @@ Github manager, control github actions and workflows of vortex repositories
 ```yaml
 Responsible:    Vortex - DevOps
 Contact:        fabiako@ntnu.no
-Working:        False 
+Working:        YESNT 
 ```
 
 ## Goal
@@ -17,14 +17,13 @@ info on the config.yaml file, with exsamples, not implemented yet
 
 ## Workflows
 
-info on the supported workflows
+Supported workflows are documented [here](./.github/workflows/README.md)
 
-### Workflow 1
-
-info about a spesific workflow, meta data and how to add it to your repo
+### How to use a workflow
+...
 
 ## Bot
 
 info on how the bot works, not yet implemented
 
-hei heih hie
+[Bot documentation](./bot/README.md)
