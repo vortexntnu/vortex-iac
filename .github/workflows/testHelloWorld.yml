@@ -15,7 +15,7 @@ jobs:
     
     steps:
       - name: print
-        uses: vortexntnu/github-iac@v1
+        uses: vortexntnu/github-iac@v1.1
         with: 
           who-to-greet: 'Eirik'
           
