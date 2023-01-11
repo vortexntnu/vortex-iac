@@ -1,5 +1,7 @@
 name: black-format check
-on: [push]
+on: 
+  push:
+  workflow_call:
 jobs:
   linter_name:
     name: runner / black formatter
