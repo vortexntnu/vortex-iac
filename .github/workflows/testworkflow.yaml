@@ -4,5 +4,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  name: format_python
-  using: vortexntnu/github-iac/.github/workflows/black-format-check.yaml
+  - name: format_python
+    using: vortexntnu/github-iac/.github/workflows/black-format-check.yaml
