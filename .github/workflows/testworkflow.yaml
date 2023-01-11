@@ -5,4 +5,4 @@ on:
 
 jobs:
   format_python:
-    uses: vortexntnu/github-iac/.github/workflows/black-format-check.yaml@main
+    uses: vortexntnu/github-iac/workflows/black-format-check.yaml@main
