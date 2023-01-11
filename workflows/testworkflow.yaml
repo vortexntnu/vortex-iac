@@ -1,7 +1,0 @@
-name: format
-on:
-  push:
-
-jobs:
-  name: format python
-  using: vortexntnu/github-iac/.github/workflows/black-format-check.yaml
