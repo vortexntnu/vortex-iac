@@ -8,22 +8,20 @@ Working:        YESNT
 ```
 
 ## Goal
-
 As we continue to develop more and more workflows, some workflows might already exsist in some repo or a workflow is needed in several repos. The goal with this repository is to create a bot to manage all workflows, you state what workflow you need in the config.yaml file and the bot copies that workflow from the workflows folder to your repository.
 
 ## Config
-
 info on the config.yaml file, with exsamples, not implemented yet
 
 ## Workflows
-
 Supported workflows are documented [here](./.github/workflows/README.md)
 
-### How to use a workflow
-...
+### How to add a workflow to a repo
+1. In the chosen repo, click the `Actions` tab
+2. Click `New workflow`
+3. Ask DevOps for help
 
 ## Bot
-
 info on how the bot works, not yet implemented
 
 [Bot documentation](./bot/README.md)
