@@ -28,7 +28,9 @@ beluga ip addresses
 
 The alias "rpi" connects you to the rasberrypi and alias "xavier" connects you to the xavier, both on beluga.
 
-## On rassberrypi
+## On rasberrypi
+
+We run the autonomus stack on the rasberrypi
 
 ### Start the roscore
 
@@ -63,12 +65,14 @@ $ source devel/setup.bash
 
 ## On Xavier
 
+We run the perception stack on xavier.
+
 What to do if the xavier randomly turns off.
 1. Observ the xavier light
 2. Try use the xavier
 3. Just ask electronical...
 
-###
+### Do something
 
 Open a new terminal and SSH to xavier.
 
