@@ -26,4 +26,45 @@ beluga ip addresses
 
 The alias "rpi" connects you to the rasberrypi and alias "xavier" connects you to the xavier, both on beluga.
 
-## 
+## On rassberrypi
+
+### Start the roscore
+
+SSH to rasberrypi.
+
+```bash
+$ rpi
+```
+
+start the roscore
+
+```bash
+$ roscore
+```
+
+### Setup rasberrypi 
+
+This start all functions needed to begin our code....
+
+On a new terminal SSH to rasberrypi agien, change your location to the launch files and start beluga.launch.
+
+```bash
+$ rpi
+$ cd /vortex_ws
+$ roslaunch auv_setup beluga.launch
+```
+Does this not work try sourcing the workspace.
+
+```bash
+$ source devel/setup.bash
+```
+
+### 
+
+
+
+
+
+
+
+
