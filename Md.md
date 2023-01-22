@@ -2,6 +2,8 @@
 
 Hei this is a document for software fat.
 
+You will be promted to open a new terminal, this do not mean you should close the exsisting terminal.
+
 ### init
 
 Use the crap-top
@@ -59,9 +61,29 @@ Does this not work try sourcing the workspace.
 $ source devel/setup.bash
 ```
 
-### 
+## On Xavier
+
+What to do if the xavier randomly turns off.
+1. Observ the xavier light
+2. Try use the xavier
+3. Just ask electronical...
+
+###
+
+Open a new terminal and SSH to xavier.
+
+```bash
+$ xavier
+```
+
+When promted with a password it is usaly one of the following
+- gladlaks
+- vortex
 
 
+
+
+FAT fail
 
 
 
