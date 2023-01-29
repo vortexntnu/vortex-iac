@@ -12,6 +12,8 @@ attendies:
 
 short doc on pooltest 29. jan 2023.
 
+**NOTE:** The numbers and actions stated in this document are ment as a guild only and not accurate the people partisipaiting in a pooltest should use their experience and knowledge.
+
 [[toc]]
 
 ## start / init
