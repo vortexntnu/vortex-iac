@@ -8,6 +8,9 @@ attendies:
   - Ronja
   - auto kar
   - Henrik (ikke perception)
+  - Henrik (perception)
+  - Christopher Strøm
+Author: Fabian Kongelf
 ```
 
 short doc on pooltest 29. jan 2023.
@@ -43,11 +46,20 @@ $ scp -r /folder_location user@ip-addres:/copy_location
 This command copies files from the current computer to a remote location.
 
 
-to use the truster, run the script activate_trusters.sh in the scripts folder.
+To use the truster, run the script activate_trusters.sh in the scripts folder.
 ```bash
 $ cd vortex_ws/src/Vortex-AUV/scripts
 $ ./activate_truster.sh
 ```
+
+## perception sonar test
+
+Perception tested sonar.
+
+Henrik write some documentation...
+
+
+
 
 
 ## problemer
