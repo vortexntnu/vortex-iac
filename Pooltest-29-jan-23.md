@@ -58,8 +58,17 @@ Perception tested sonar.
 
 Henrik write some documentation...
 
+## Autonomus DP test
 
+Test started with catkin clean and build.
 
+```bash
+$ cd vortex_ws
+$ catkin clean
+$ catkin build
+```
+
+Start with DP launch
 
 
 ## problems
