@@ -42,3 +42,17 @@ $ scp -r /folder_location user@ip-addres:/copy_location
 ```
 This command copies files from the current computer to a remote location.
 
+## problemer
+
+Problemes encounterd at pooltest.
+
+### spennings problem
+
+Hvis spenningen som måles er utenfor akseptert thust interface (lookup table) blir verdien satt til null, beluga går i en retning forever. må ha en refernace måling. problem mellom arduino til rasberrypi,
+thurster interfacet har et lookup table den bruker, når man bruker joistick (xbox kontroller) henter den ut nåværende volt, denne verdien er utenfor lookup table og verdien blir satt til null (istedenfor last value), fører til å thruster interface ikke er responsivt.
+
+#### hotfix
+
+Change callback for voltate on thurster interface (scripts/thurster_interface_node.py) in function voltage_cb, to give a constant value. 
+
+**Todo:** Revise how thruster interface handles voltage input, can thruster interface acsept high values (but give a warning).
