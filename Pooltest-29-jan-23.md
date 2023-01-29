@@ -42,6 +42,14 @@ $ scp -r /folder_location user@ip-addres:/copy_location
 ```
 This command copies files from the current computer to a remote location.
 
+
+to use the truster, run the script activate_trusters.sh in the scripts folder.
+```bash
+$ cd vortex_ws/src/Vortex-AUV/scripts
+$ ./activate_truster.sh
+```
+
+
 ## problemer
 
 Problemes encounterd at pooltest.
@@ -56,3 +64,10 @@ thurster interfacet har et lookup table den bruker, når man bruker joistick (xb
 Change callback for voltate on thurster interface (scripts/thurster_interface_node.py) in function voltage_cb, to give a constant value. 
 
 **Todo:** Revise how thruster interface handles voltage input, can thruster interface acsept high values (but give a warning).
+
+### Different nameing conventions
+
+There are differences in how names are set and used, some folder have capital letters while most have only lowercase letters and there are differences in how space is handles ether "_" or "-", pick one.
+
+**TODO:** Revise how nameing conventions are used, create a document on how names should be, can a github action be created to force nameing convention?
+
