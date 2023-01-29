@@ -62,14 +62,16 @@ Henrik write some documentation...
 
 
 
-## problemer
+## problems
 
 Problemes encounterd at pooltest.
 
-### spennings problem
+### Voltage problem
 
 Hvis spenningen som måles er utenfor akseptert thust interface (lookup table) blir verdien satt til null, beluga går i en retning forever. må ha en refernace måling. problem mellom arduino til rasberrypi,
 thurster interfacet har et lookup table den bruker, når man bruker joistick (xbox kontroller) henter den ut nåværende volt, denne verdien er utenfor lookup table og verdien blir satt til null (istedenfor last value), fører til å thruster interface ikke er responsivt.
+
+Thruster interface mesured a voltage 
 
 **Hotfix:** Change callback for voltate on thurster interface (scripts/thurster_interface_node.py) in function voltage_cb, to give a constant value. 
 
@@ -81,3 +83,9 @@ There are differences in how names are set and used, some folder have capital le
 
 **TODO:** Revise how nameing conventions are used, create a document on how names should be, can a github action be created to force nameing convention?
 
+### Monocamera and sterocamera did not work
+
+Henrik perception where unable to start either the monocamera or stereocamera. Xavior shut down when attemted to start stereocamera.
+Monocamera worked after a dry test after inital fail.
+
+**TODO:** continue to test stereocamera and xavior interactions.
