@@ -1,3 +1,0 @@
-# Bot
-
-Info on bot
