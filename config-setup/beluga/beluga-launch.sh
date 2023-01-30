@@ -2,12 +2,14 @@
 
 # This file was curated by Vortex - DevOps
 
+# progress bar
 source progress.sh
 
-printf "!## Lauch beluga ##!"
+printf "!## launching beluga ##!"
 
 printf "\n\n"
 
+# simulates progress...
 tasks_in_total=37
 for current_task in $(seq $tasks_in_total) 
     do
