@@ -1,11 +1,13 @@
 name: Build PlatformIO project
 
+# on:
+#   push:
+#     branches:
+#       - 'master'
+#       - 'releases/**'
+#   pull_request:
 on:
-  push:
-    branches:
-      - 'master'
-      - 'releases/**'
-  pull_request:
+  workflow_call:
 
 env:
   PLATFORMIO_PROJECT_DIR: './cpp/teensy/'

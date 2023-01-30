@@ -1,6 +1,8 @@
 name: black-format check
+
 on: 
   workflow_call: #reusable workflow that can be called from other repos
+
 jobs:
   linter_name:
     name: runner / black formatter

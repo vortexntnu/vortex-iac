@@ -1,6 +1,8 @@
 name: Format python code
+
 on: 
   workflow_call:
+
 jobs:
   autoyapf:
     runs-on: ubuntu-latest
