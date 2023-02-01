@@ -1,21 +1,56 @@
 #!/bin/bash
 
 # This file was curated by Vortex - DevOps
+# If any questions contac vortex devops
 
-# progress bar
-source progress.sh
+# source files and declere global variable
+# -----------------------------------------------------------------------------------------------------------
+source progress.sh # progress bar
 
-printf "!## launching beluga ##!"
+# init enviorment
+# -----------------------------------------------------------------------------------------------------------
 
-printf "\n\n"
+echo -ne "\n!## Initialize environment ##!\n\n"
 
-# simulates progress...
+apt-get update -qq | echo -ne "Updating apt\n"
+apt-get upgrade -qq | echo -ne "Upgrading apt\n"
+apt-get install -yqq openssh-server | echo -ne "Installing ssh\n"
+apt-get install -yqq bc | echo -ne "Installing bc\n"
+
+# launch beluga
+# -----------------------------------------------------------------------------------------------------------
+
+echo -ne "\n!## launching beluga ##!\n\n"
+
+tasks=(
+    "handshake",
+    "evironment check",
+    "evironment update/install",
+    "ros node check",
+    "ros node update/install",
+    "start ros",
+    "suport scripts",
+)
+
+
 tasks_in_total=37
-for current_task in $(seq $tasks_in_total) 
+for current_task in $(seq $tasks_in_total) # simulates progress... 
     do
     sleep 0.2 #simulate the task running
-    show_progress $current_task $tasks_in_total
+    msg=$(echo "msg of some kind")
+    error="false"
+
+    if [ $current_task -eq 60 ]; then
+        msg=$(echo "problem with task ${current_task}")
+        error="true"
+        show_progress $current_task $tasks_in_total $error $msg
+        break
+    else
+        show_progress $current_task $tasks_in_total $error $msg
+    fi
 done
+
+printf "\n"
 
 # search network
 # create handshacks with rpi and xavier
