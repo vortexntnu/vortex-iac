@@ -10,7 +10,6 @@ function show_progress {
     current="$1"
     total="$2"
     error="$3"
-    msg="$4"
 
     success='\033[32m'
     fail='\033[0;31m'
@@ -38,7 +37,7 @@ function show_progress {
         done_sub_bar=$(printf "%${done}s" | tr " " "${bar_char_fail}")
         echo -ne "\rProgress : [${done_sub_bar}${todo_sub_bar}] ${percent}%"
         echo -ne $fail
-        echo -ne "\nFail: ${msg}\n"
+        echo -ne "\nFail\n"
         echo -ne $nc 
     fi
 }
