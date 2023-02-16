@@ -6,7 +6,8 @@
 # source files and decleare global variable
 # -----------------------------------------------------------------------------------------------------------
 
-source progress.sh # progress bar
+source ./tools/progress.sh      # progress bar, visulizing progress
+source ./tools/yaml-parser.sh    # for parsing yaml config file
 
 echo -ne "beluga-launch v0.0.1\n\n"
 
@@ -16,31 +17,32 @@ echo -ne "beluga-launch v0.0.1\n\n"
 
 echo -ne "\033[1;30m"   # muted / grey color
 # echo -ne "Initialize environment...\n"
-apt-get update -qq | echo -ne "Updating apt\n"
-apt-get upgrade -yqq | echo -ne "Upgrading apt\n"
 
-echo -ne "Check if openssh-client is installed"
+# apt-get update -qq | echo -ne "Updating apt\n"
+# apt-get upgrade -yqq | echo -ne "Upgrading apt\n"
+
+# load config file
+echo -ne "Loading config\n"
+eval $(parse_yaml launch-config.yaml)
+
+parse_yaml launch-config.yaml
+
 if dpkg -s openssh-client | grep -q "Status:"; then # if dpkg can find package openssh-client
-    echo -ne ", installed\n"
+    echo -ne ""
 else # could not find package
-    echo -ne ", not installed\n"
-    apt-get install -yqq openssh-client | echo -ne " - Installing openssh-client\n" # install package openssh-client
+    apt-get install -yqq openssh-client | echo -ne "Installing openssh-client\n" # install package openssh-client
 fi
 
-echo -ne "Check if bc is installed"
 if dpkg -s bc | grep -q "Status:"; then
-    echo -ne ", installed\n"
+    echo -ne ""
 else
-    echo -ne ", not installed\n"
-    apt-get install -yqq bc | echo -ne " - Installing bc\n"
+    apt-get install -yqq bc | echo -ne "Installing bc\n"
 fi
 
-echo -ne "Check if ping is installed"
 if dpkg -s iputils-ping | grep -q "Status:"; then
-    echo -ne ", installed\n"
+    echo -ne ""
 else
-    echo -ne ", not installed\n"
-    apt-get install -yqq iputils-ping | echo -ne " - Installing iputils-ping\n"
+    apt-get install -yqq iputils-ping | echo -ne "Installing iputils-ping\n"
 fi
 
 echo -ne "\033[0m"  # no color
@@ -49,12 +51,6 @@ echo -ne "\033[0m"  # no color
 # ----- launch beluga
 # -----------------------------------------------------------------------------------------------------------
 
-echo -ne "\nlaunching beluga\n"
-
-# beluga ip addresses
-rpi="123.123.123.123"
-xavier="123.123.123.123"
-
 # task tracker / progressbar / log
 tasks_in_total=37   # total amout of subtasks
 current_task=1      # current task working with, for log messages
@@ -62,10 +58,10 @@ current_subtask=1   # current sub-task used with tasks in total to give an estim
 error="false"       # gives error in progressbar, IMPORTANT after error is sent to progressbar stop script
 
 # color echo msg
-success='\033[32m'  # green
-fail='\033[0;31m'   # red
-warning='\033[0;33m'# yellow
-nc='\033[0m'        # no color
+success="\033[32m"      # green
+fail="\033[0;31m"       # red
+warning="\033[0;33m"    # yellow
+nc="\033[0m"            # no color
 
 echo -ne "\n"
 
