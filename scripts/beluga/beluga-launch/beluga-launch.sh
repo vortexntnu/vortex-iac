@@ -12,7 +12,7 @@ source ./tools/yaml-parser.sh    # for parsing yaml config file
 echo -ne "beluga-launch v0.0.1\n\n"
 
 # -----------------------------------------------------------------------------------------------------------
-# init enviorment
+# - init enviorment
 # -----------------------------------------------------------------------------------------------------------
 
 echo -ne "\033[1;30m"   # muted / grey color
@@ -27,18 +27,21 @@ eval $(parse_yaml launch-config.yaml)
 
 parse_yaml launch-config.yaml
 
+# check if ssh is installed on craptop
 if dpkg -s openssh-client | grep -q "Status:"; then # if dpkg can find package openssh-client
     echo -ne ""
 else # could not find package
     apt-get install -yqq openssh-client | echo -ne "Installing openssh-client\n" # install package openssh-client
 fi
 
+# chack is bc is installed on craptop
 if dpkg -s bc | grep -q "Status:"; then
     echo -ne ""
 else
     apt-get install -yqq bc | echo -ne "Installing bc\n"
 fi
 
+# check if ping is installed on craptop
 if dpkg -s iputils-ping | grep -q "Status:"; then
     echo -ne ""
 else
@@ -48,7 +51,7 @@ fi
 echo -ne "\033[0m"  # no color
 
 # -----------------------------------------------------------------------------------------------------------
-# ----- launch beluga
+# - launch beluga
 # -----------------------------------------------------------------------------------------------------------
 
 # task tracker / progressbar / log
@@ -72,8 +75,9 @@ show_progress $current_subtask $tasks_in_total $error
 # -----------------------------------------------------------------------------------------------------------
 
 # handshake rpi
-((curent_subtask++))
+((current_subtask++))
 
+# if able to ping rpi
 if ping -q -c 4 $rpi | grep "100% packet loss"; then
     echo -ne "\r[${current_task}] $fail Failed to make contact with rasberrypi $nc \n \033[2K \n"
     error="true"
@@ -85,8 +89,9 @@ else
 fi
 
 # handshake xavier
-((curent_subtask++))
+((current_subtask++))
 
+# if able to ping xavier
 if ping -q -c 4 $xavier | grep "100% packet loss"; then
     echo -ne "\r[${current_task}] $fail Failed to make contact with Xavier $nc \n \033[2K \n"
     error="true"
@@ -100,7 +105,7 @@ fi
 # confirm workspace (ws)
 # -----------------------------------------------------------------------------------------------------------
 
-((curent_subtask++))
+((current_subtask++))
 ((curent_task++))
 
 if ls | grep "vortex_ws"; then # check if vortex_ws exsists in current contex
@@ -108,7 +113,7 @@ if ls | grep "vortex_ws"; then # check if vortex_ws exsists in current contex
     show_progress $current_subtask $tasks_in_total $error
     
     # repo = ...
-    ((curent_subtask++))
+    ((current_subtask++))
     if ls vortex_ws/ | grep ""; then
         # check if git repo
         # then, git pull
@@ -124,7 +129,7 @@ else # if vortex_ws did not exsist create repo
 
     # clone all repos
     # repo = ...
-    ((curent_subtask++))
+    ((current_subtask++))
     git clone ... /vortex_ws | echo -ne "\r[${current_task}] Cloning <repo> in vortex_ws \n \033[2K \n"
     show_progress $current_subtask $tasks_in_total $error
 fi
@@ -136,37 +141,37 @@ fi
 # mirror to rpi
 # -----------------------------------------------------------------------------------------------------------
 
-((curent_subtask++))
+((current_subtask++))
 ((curent_task++))
 
 # mirror to xavier
 # -----------------------------------------------------------------------------------------------------------
 
-((curent_subtask++))
+((current_subtask++))
 ((curent_task++))
 
 # start stuff on rpi
 # -----------------------------------------------------------------------------------------------------------
 
-((curent_subtask++))
+((current_subtask++))
 ((curent_task++))
 
 # start stuff on xavier
 # -----------------------------------------------------------------------------------------------------------
 
-((curent_subtask++))
+((current_subtask++))
 ((curent_task++))
 
 # validate rpi
 # -----------------------------------------------------------------------------------------------------------
 
-((curent_subtask++))
+((current_subtask++))
 ((curent_task++))
 
 # validate xavier
 # -----------------------------------------------------------------------------------------------------------
 
-((curent_subtask++))
+((current_subtask++))
 ((curent_task++))
 
 
