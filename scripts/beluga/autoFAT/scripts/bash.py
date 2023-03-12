@@ -14,21 +14,33 @@ def run(command: str) -> bool:
         # environment dont have pkg
         return False
 
+def ssh_run(ip: str, user: str, pwd: str, command: str) -> bool:
+    pass
+
 def hasDPKG(pkg: str) -> bool:
     # bash command to run ("> /dev/null 2>&1" removes output)
     command = 'dpkg -s ' + pkg + ' > /dev/null 2>&1'
 
     if run(command):
-        return True, ""
+        return True
     else:
-        msg = str("Missing package: ", pkg, ", try: apt-get install ", pkg)
-        print(msg)
-        return False, msg
+        print("\033[0;31m", "Error: ", "\033[0m", "Missing package: ", pkg, ", try: apt-get install ", pkg, sep="")
+        return False
 
-# def installDPKG(pkg: str) -> bool:
-#     # bash command to run ("> /dev/null 2>&1" removes output)
-#     command = 'apt-get install -yqq ' + pkg + ' > /dev/null 2>&1'
+def ping(ip: str) -> bool:
+    command = ""
 
-#     print("[0] - Installing ", pkg, "...", sep="")
+    if run(command):
+        return True
+    else:
+        print("\033[0;31m", "Error: ", "\033[0m", "Unable to ping/reach ", ip, sep="")
+        return False
 
-#     return run(command)
+def getBashrc(ip: str, user: str, pwd: str) -> bool:
+    command = ""
+
+    if ssh_run(ip, user, pwd, command):
+        return True
+    else:
+        print("\033[0;31m", "Error: ", "\033[0m", "Unable to fetch bashrc from ", ip, sep="")
+        return False
