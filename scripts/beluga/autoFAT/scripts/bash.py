@@ -18,12 +18,17 @@ def hasDPKG(pkg: str) -> bool:
     # bash command to run ("> /dev/null 2>&1" removes output)
     command = 'dpkg -s ' + pkg + ' > /dev/null 2>&1'
 
-    return run(command)
+    if run(command):
+        return True, ""
+    else:
+        msg = str("Missing package: ", pkg, ", try: apt-get install ", pkg)
+        print(msg)
+        return False, msg
 
-def installDPKG(pkg: str) -> bool:
-    # bash command to run ("> /dev/null 2>&1" removes output)
-    command = 'apt-get install -yqq ' + pkg + ' > /dev/null 2>&1'
+# def installDPKG(pkg: str) -> bool:
+#     # bash command to run ("> /dev/null 2>&1" removes output)
+#     command = 'apt-get install -yqq ' + pkg + ' > /dev/null 2>&1'
 
-    print("[0] - Installing ", pkg, "...", sep="")
+#     print("[0] - Installing ", pkg, "...", sep="")
 
-    return run(command)
+#     return run(command)

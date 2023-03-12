@@ -34,9 +34,6 @@ def main() -> bool:
     # --------------------------------------------
     # - setup
     # --------------------------------------------
-
-    print("auto FAT v0.1.0")
-
     print(print_mute, end="")
 
     print("[0] - Validate environment")
@@ -56,33 +53,30 @@ def main() -> bool:
     # --------------------------------------------
     # - not setup
     # --------------------------------------------
-    console = Console(theme = Theme({
-        "bar.complete": "cyan",
-        "bar.finish": "green",
-    }))
-
     with Progress(
         TextColumn("[progress.description]{task.description}"),
-        BarColumn(
-            complete_style='cyan', 
-            finished_style='green'),
+        BarColumn(complete_style="cyan", finished_style="green"),
         TaskProgressColumn(),
         TimeElapsedColumn(),    
     ) as progress:
+        autofat = progress.add_task("[cyan]AutoFAT ", total=12)
 
-        task1 = progress.add_task("[dim]Setup...", total=1000)
-        task2 = progress.add_task("[cyan]Starting...", total=1000)
+        for pkg in env_pkgs:
+            res, msg = bash.hasDPKG(pkg)
+            if res:
+                progress.advance(autofat)
+            else:
+                progress.console.print(msg)
+                return False
 
-        while not progress.finished:
-            progress.update(task1, advance=10)
-            progress.update(task2, advance=1)
-            time.sleep(0.02)
+
 
     return True
 
 # --------------------------------------------
 
 if __name__ == "__main__":
+    print("auto FAT v0.2.0")
     if main():
         print(print_success, "Done", print_nc, sep="")
     else:
