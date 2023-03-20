@@ -51,7 +51,7 @@ def main() -> bool:
         TaskProgressColumn(),
         TimeElapsedColumn(),    
     ) as progress:
-        autofat = progress.add_task("[cyan]AutoFAT ", total=6)
+        autofat = progress.add_task("[cyan]AutoFAT ", total=8)
         
         # --------------------------------------------
         # - setup
