@@ -62,5 +62,5 @@ def valEnv(device: object, variable: str, value: str) -> bool:
     if ssh_run(device["ip_address"], device["user"], device["password"], command):
         return True
     else:
-        print("\033[0;31m", "Error: ", "\033[0m", "Unable to find env variable ", variable, " with value ", value, sep="")
+        print("\033[0;31m", "Error: ", "\033[0m", "Unable to find env variable ", variable, " with value ", value, "on", device["name"],  sep="")
         return False
