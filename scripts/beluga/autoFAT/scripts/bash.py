@@ -57,7 +57,7 @@ def ssh_ls(device: object) -> bool:
 
 # validate env var on devices though ssh
 def valEnv(device: object, variable: str, value: str) -> bool:
-    command = 'printenv '+ variable + ' | grep "' + value + '" > /dev/null 2>&1'
+    command = 'cat ~/.bashrc | grep "export '+ variable + '" | grep "' + value + '" > /dev/null 2>&1'
 
     if ssh_run(device["ip_address"], device["user"], device["password"], command):
         return True
