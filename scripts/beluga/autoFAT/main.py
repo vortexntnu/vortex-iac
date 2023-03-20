@@ -28,7 +28,7 @@ env_pkgs = [
 
 # yaml config file
 # yaml_config = "config.yaml"
-yaml_config = "t-config.yaml"
+yaml_config = "config.yaml"
 
 # print msg color
 print_mute      = "\x1b[1;30m"

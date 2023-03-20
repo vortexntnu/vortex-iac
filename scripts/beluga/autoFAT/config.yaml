@@ -27,7 +27,7 @@ network:
   - name: xavier 
     ip_address: 129.241.187.100
     user: vortex
-    password: ${XAVIER_PWD}
+    password: gladlaks
     env_var:
       - name: ROS_MASTER_URI
         value: http://129.241.187.99:11311
