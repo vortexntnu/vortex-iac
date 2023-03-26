@@ -13,7 +13,7 @@ def read(file):
             print("[0] - Error while parsing {file}: {e}")
 
 def validate(config):
-    # Your validation logic here
+    # TODO: Your validation logic here
     if 'network' not in config:
         print("[0] - Network configuration is missing")
         return False

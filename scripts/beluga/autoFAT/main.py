@@ -31,11 +31,11 @@ env_pkgs = [
 yaml_config = "config.yaml"
 
 # print msg color
-print_mute      = "\x1b[1;30m"
-print_success   = "\033[32m"
-print_warning   = "\033[0;33m"
-print_error     = "\033[0;31m"
-print_nc        = "\033[0m"
+# print_mute      = "\x1b[1;30m"
+# print_success   = "\033[32m"
+# print_warning   = "\033[0;33m"
+# print_error     = "\033[0;31m"
+# print_nc        = "\033[0m"
 
 # fat rapport
 version = "0.2.1"
@@ -83,6 +83,18 @@ def main() -> bool:
             devops_fat_status[0] = True
         else:
             return False
+        
+        # --------------------------------------------
+        # - Validate ROS
+        # --------------------------------------------
+
+        # TODO: check if ros exists, validate ROS related packages
+
+        # --------------------------------------------
+        # - Start ROS
+        # --------------------------------------------
+
+        # TODO: start ROS
 
         # --------------------------------------------
         # - Perception FAT
