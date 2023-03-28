@@ -57,10 +57,10 @@ def ssh_ls(device: object) -> bool:
 
 # validate env var on devices though ssh
 def valEnv(device: object, variable: str, value: str) -> bool:
-    command = 'cat ~/.bashrc | grep "export '+ variable + '" | grep "' + value + ' " > /dev/null 2>&1'
+    command = "cat ~/.bashrc | grep 'export " + variable + "' | grep '" + value + " ' > /dev/null 2>&1"
 
     if ssh_run(device["ip_address"], device["user"], device["password"], command):
         return True
     else:
-        print("\033[0;31m", "Error: ", "\033[0m", "Unable to find env variable ", variable, " with value ", value, "on", device["name"],  sep="")
+        print("\033[0;31m", "Error: ", "\033[0m", "Unable to find env variable ", variable, " with value ", value, " on ", device["name"],  sep="")
         return False
