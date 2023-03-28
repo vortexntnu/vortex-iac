@@ -32,9 +32,9 @@ network:
       - name: ROS_MASTER_URI
         value: http://129.241.187.99:11311
       - name: ROS_IP
-        value: 129.241.187.99
+        value: 129.241.187.100
       - name: ROS_HOSTNAME
-        value: 129.241.187.99
+        value: 129.241.187.100
 
 
 

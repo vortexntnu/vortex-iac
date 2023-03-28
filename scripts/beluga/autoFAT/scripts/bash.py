@@ -21,7 +21,6 @@ def ssh_run(ip: str, user: str, pwd: str, command: str) -> bool:
     # ssh connect you to another device
     # you can "pipe" a command using ssh to execute the command on another device
     ssh_command = 'sshpass -p "{}" ssh {}@{} "{}"'.format(pwd, user, ip, command)
-    print(ssh_command)
     
     return run(ssh_command)
 
