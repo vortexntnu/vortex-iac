@@ -20,7 +20,8 @@ def ssh_run(ip: str, user: str, pwd: str, command: str) -> bool:
     # sshpass applies the password to an ssh command
     # ssh connect you to another device
     # you can "pipe" a command using ssh to execute the command on another device
-    ssh_command = 'sshpass -p "' + pwd + '" ssh ' + user + '@' + ip + ' "' + command + '"'
+    ssh_command = 'sshpass -p "{}" ssh {}@{} "{}"'.format(pwd, user, ip, command)
+    print(ssh_command)
     
     return run(ssh_command)
 
@@ -57,7 +58,7 @@ def ssh_ls(device: object) -> bool:
 
 # validate env var on devices though ssh
 def valEnv(device: object, variable: str, value: str) -> bool:
-    command = "cat ~/.bashrc | grep 'export " + variable + "' | grep '" + value + " ' > /dev/null 2>&1"
+    command = "cat ~/.bashrc | grep 'export {}' | grep '{}' > /dev/null 2>&1".format(variable, value)
 
     if ssh_run(device["ip_address"], device["user"], device["password"], command):
         return True
