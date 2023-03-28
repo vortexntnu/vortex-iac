@@ -96,6 +96,10 @@ def main() -> bool:
 
         # TODO: start ROS
 
+        # sorce relevant stuff...
+        # start ROS core
+        
+
         # --------------------------------------------
         # - Perception FAT
         # --------------------------------------------
@@ -122,6 +126,10 @@ def main() -> bool:
             autonomous_fat_status[0] = True
         else:
             return False
+        
+        # --------------------------------------------
+        # - Stop ROS
+        # --------------------------------------------
 
 
     return True
