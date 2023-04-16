@@ -1,9 +1,9 @@
-name: Run Unit Test via Pytest
+name: Run Unit Test via Pytest!
 
 on: workflow_call
 
 jobs: 
-  build:
+  build: 
     runs-on: ubuntu-latest
     strategy:
       matrix:
