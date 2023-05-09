@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <title>ROS cam</title>
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                display: grid;
+                place-items: center;
+            }
+
+            main {
+                display: grid;
+                grid-template-columns: 700px 700px;
+                grid-template-rows: 60px auto;
+                place-items: center; 
+                grid-gap: 10px;           
+            }
+
+            article {
+                border: 1px solid red
+            }
+
+            h1 {
+                font-size: 35px;
+                font-family: monospace
+            }
+
+            canvas {
+                width: 700px;
+                height: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <article>
+                <h1>zed2i</h1>
+            </article>
+            <article>
+                <h1>UDFC</h1>
+            </article>
+            <article>
+                <canvas id="zed2_feed"></canvas>
+            </article>
+            <article>
+                <canvas id="udfc_feed"></canvas>
+            </article>
+        </main>
+
+        <script type="text/javascript">
+            var ros = new ROSLIB.Ros({
+                url: 'ws://localhost:9090'
+            });
+
+            ros.on('connection', () => { console.log('Connected to websocket!') });
+            ros.on('error', (err) => { console.log('Error connecting to websocket :( ', err) });
+            ros.on('close', () => { console.log('Connection to websocket closed.') });
+
+            var udfc_topic = new ROSLIB.Topic({
+                ros: ros,
+                name: '',
+                messageType: 'sensor_msgs/CompressedImage'
+            });
+
+            var zed2_topic = new ROSLIB.Topic({
+                ros: ros,
+                name: '',
+                messageType: 'sensor_msgs/CompressedImage'
+            });
+
+            var udfc_canvas = document.getElementById('udfc_feed');
+            var udfc_ctx = udfc_canvas.getContex('2d');
+
+            var zed2_canvas = document.getElementById('zed2_feed');
+            var zed2_ctx = zed2_canvas.getContex('2d');
+            
+            udfc_topic.subscribe((msg) => {
+                var img = new Image();
+                img.onload = () => {
+                    udfc_ctx.drawImage(img, 0, 0, udfc_canvas.width, udfc_canvas.height);
+                }
+                img.src = "data:image/jpeg;base64," + msg.data;
+            });
+
+            zed2_topic.subscribe((msg) => {
+                var img = new Image();
+                img.onload = () => {
+                    zed2_ctx.drawImage(img, 0, 0, zed2_canvas.width, zed2_canvas.height);
+                }
+                img.src = "data:image/jpeg;base64," + msg.data;
+            });
+        </script>
+    </body>
+</html>
