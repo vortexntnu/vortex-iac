@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UFT-8">
+        <meta charset="utf-8" />
         <title>ROS cam</title>
-        <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-        <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+        <!-- <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script> -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+
         <style>
             * {
                 margin: 0;
@@ -14,7 +17,7 @@
             body {
                 width: 100vw;
                 height: 100vh;
-                overflow: hidden;
+                overflow: auto;
                 display: grid;
                 place-items: center;
             }
@@ -27,10 +30,6 @@
                 grid-gap: 10px;           
             }
 
-            article {
-                border: 1px solid red
-            }
-
             h1 {
                 font-size: 35px;
                 font-family: monospace
@@ -39,6 +38,7 @@
             canvas {
                 width: 700px;
                 height: auto;
+                border: 2px solid black;
             }
         </style>
     </head>
@@ -46,17 +46,13 @@
     <body>
         <main>
             <article>
-                <h1>zed2i</h1>
+                <h1>zed2</h1>
             </article>
             <article>
                 <h1>UDFC</h1>
             </article>
-            <article>
-                <canvas id="zed2_feed"></canvas>
-            </article>
-            <article>
-                <canvas id="udfc_feed"></canvas>
-            </article>
+            <article id="zed2_feed"></article>
+            <article id="udfc_feed"></article>
         </main>
 
         <script type="text/javascript">
@@ -70,21 +66,23 @@
 
             var udfc_topic = new ROSLIB.Topic({
                 ros: ros,
-                name: '',
+                name: '/udfc/wrapper/camera_raw/compressed',
                 messageType: 'sensor_msgs/CompressedImage'
             });
 
             var zed2_topic = new ROSLIB.Topic({
                 ros: ros,
-                name: '',
+                name: '/zed2/zed_node/rgb_raw/image_raw_color/compressed',
                 messageType: 'sensor_msgs/CompressedImage'
             });
 
-            var udfc_canvas = document.getElementById('udfc_feed');
-            var udfc_ctx = udfc_canvas.getContex('2d');
+            var udfc_element = document.getElementById('udfc_feed');
+            var udfc_canvas = document.createElement('canvas');
+            var udfc_ctx = udfc_canvas.getContext('2d');
 
-            var zed2_canvas = document.getElementById('zed2_feed');
-            var zed2_ctx = zed2_canvas.getContex('2d');
+            var zed2_element = document.getElementById('zed2_feed');
+            var zed2_canvas = document.createElement('canvas')
+            var zed2_ctx = zed2_canvas.getContext('2d');
             
             udfc_topic.subscribe((msg) => {
                 var img = new Image();
@@ -101,6 +99,9 @@
                 }
                 img.src = "data:image/jpeg;base64," + msg.data;
             });
+
+            udfc_element.appendChild(udfc_canvas);
+            zed2_element.appendChild(zed2_canvas);
         </script>
     </body>
 </html>
