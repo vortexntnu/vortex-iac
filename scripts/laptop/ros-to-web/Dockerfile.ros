@@ -11,4 +11,6 @@ RUN apt update && \
 # RUN source /opt/ros/melodic/setup.bash && \
 #     roslaunch rosbridge_server rosbridge_websocket.launch    
 
-ENTRYPOINT ["/opt/ros/melodic/setup.bash"]
+# ENTRYPOINT ["/opt/ros/melodic/setup.bash"]
+
+CMD ["/bin/bash"]
