@@ -7,6 +7,28 @@
         <!-- <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
         <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script> -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+        <script type="text/javascript">
+            var ros = new ROSLIB.Ros({
+                url: 'ws://localhost:9090'
+            });
+
+            ros.on('connection', () => { console.log('Connected to websocket!') });
+            ros.on('error', (err) => { console.log('Error connecting to websocket :( ', err) });
+            ros.on('close', () => { console.log('Connection to websocket closed.') });
+        </script>
+
+        <script type="text/javascript">
+            var topicsClient = new ROSLIB.Service({
+                ros : ros,
+                name : '/rosapi/topics',
+                serviceType : 'rosapi/Topics'
+            });
+
+            var request = new ROSLIB.ServiceRequest();
+            topicsClient.callService(request, (result) => {
+                console.log("Getting topics...", result);
+            });
+        </script>
 
         <style>
             * {
@@ -56,14 +78,6 @@
         </main>
 
         <script type="text/javascript">
-            var ros = new ROSLIB.Ros({
-                url: 'ws://localhost:9090'
-            });
-
-            ros.on('connection', () => { console.log('Connected to websocket!') });
-            ros.on('error', (err) => { console.log('Error connecting to websocket :( ', err) });
-            ros.on('close', () => { console.log('Connection to websocket closed.') });
-
             var udfc_topic = new ROSLIB.Topic({
                 ros: ros,
                 name: '/udfc/wrapper/camera_raw/compressed',
