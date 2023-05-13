@@ -8,6 +8,11 @@ services:
       dockerfile: Dockerfile.ros
     # image: ubuntu:20.04
     ports:
+      - 21000:21000
+      - 21001:21001
+      - 21002:21002
+      - 11311:11311
+      - 5000:5000
       - 8080:8080
       - 9090:9090
     tty: true
