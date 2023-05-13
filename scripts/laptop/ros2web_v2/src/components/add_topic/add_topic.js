@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import IconButton from '@material-ui/core/IconButton';
-import { useSizedIconButtonStyles } from '@mui-treasury/styles/iconButton/sized';
-import Add from '@material-ui/icons/Add';
+import Button from '@mui/material/Button';
+// import IconButton from '@material-ui/core/IconButton';
+// import { useSizedIconButtonStyles } from '@mui-treasury/styles/iconButton/sized';
+import AddIcon from '@mui/icons-material/Add';
 
 import './add_topic.css'
 
@@ -20,14 +22,23 @@ function Add_topic(props) {
         event.preventDefault();
         alert(value)
     }
+    
 
-    const sizeLarge = useSizedIconButtonStyles({ 
-        padding: 16, 
-        childSize: 32 
-    });
+    const CustomButton = styled(Button)({
+        color: '#bdbdbd',
+        border: '1px, solid',
+        borderColor: '#bdbdbd',
+        borderRadius: '4px',
+        paddingLeft: '20px',
+        paddingRight: '20px',
+        '&:hover': {
+            borderColor: '#000',
+            color: '#000'
+        },
+      });
 
     return(
-        <div class="">
+        <div class="add_topic">
             <Autocomplete
                 value={value}
                 onChange={(event, newValue) => { setValue(newValue); }}
@@ -39,9 +50,7 @@ function Add_topic(props) {
                 renderInput={(params) => <TextField {...params} label="Topics" />}
             />
 
-            <IconButton classes={sizeLarge}>
-                <Add />
-            </IconButton>
+            <CustomButton startIcon={<AddIcon />} onClick={handleSubmit}> ADD </CustomButton>
         </div>
     )
 }
