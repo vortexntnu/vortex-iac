@@ -17,28 +17,19 @@ function App() {
 
   const [views, setViews] = useState([]);
 
-  const addView = (item) => {
-    setViews(oldViews => [...oldViews, item]);
-  }
-
-  const removeView = (e) => {
-    const name = e.target.id("name");
-    setViews(views.filter(item => item !== name));
-  }
-
-  useEffect(() => {
-    // render views / feeds
-  }, [views])
+  const addView = (view) => !views.includes(view) ? setViews(oldViews => [...oldViews, view]) : console.log("Topic allready exists")
+  const removeView = (view) => setViews(views.filter(item => item.topic !== view))
 
   return (
     <div className="App">
       <NAVBAR header="ros2web" addView={addView} ros={ros} />
-
+  
       <main className="Feeds">
-        <VIEW title="test_topic_1" />
-        <VIEW title="test_topic_2" />
-        <VIEW title="test_topic_3" />
-      </main>
+        { views.length 
+          ? views.map(view => { return <VIEW topic={view.topic} type={view.type} removeFunction={removeView} ros={ros} />}) 
+          : console.log("Nothing to show...")
+        }
+      </main>   
     </div>
   );
 }
