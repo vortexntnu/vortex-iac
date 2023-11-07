@@ -20,3 +20,8 @@
 - Formats python files in the repo
 - Changes the files and pushes a new commit
 - Uses black-format-check
+
+### ctest.yml
+- Setup ROS2
+- Build packages
+- Run colcon test
