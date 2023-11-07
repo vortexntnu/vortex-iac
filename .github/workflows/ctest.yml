@@ -1,6 +1,16 @@
 name: Run tests
 
-on: [push, pull_request]
+on: 
+  workflow_dispatch:
+    
+  pull_request:
+    branches: [main]
+
+  push:
+    branches: [main]
+
+env:
+  ROS_DISTRIBUTION: humble
 
 jobs:
   build:
@@ -9,9 +19,9 @@ jobs:
       - name: Set up ROS
         uses: ros-tooling/setup-ros@v0.6
         with:
-          required-ros-distributions: humble
+          required-ros-distributions: ${{ env.ROS_DISTRIBUTION }}
 
       - name: Build and test packages
         uses: ros-tooling/action-ros-ci@v0.3
         with:
-          target-ros2-distro: humble
+          target-ros2-distro: ${{ env.ROS_DISTRIBUTION }}
