@@ -1,0 +1,18 @@
+FROM ros:melodic
+
+RUN apt update && \
+    apt install -y --no-install-recommends \
+    python-pip \
+    ros-melodic-rosbridge-server
+
+COPY 2022-06-02-20-08-51.bag 2022-06-02.bag
+
+# RUN source /opt/ros/melodic/setup.bash && \
+#     roscore
+
+# RUN source /opt/ros/melodic/setup.bash && \
+#     roslaunch rosbridge_server rosbridge_websocket.launch    
+
+# ENTRYPOINT ["/opt/ros/melodic/setup.bash"]
+
+CMD ["/bin/bash"]

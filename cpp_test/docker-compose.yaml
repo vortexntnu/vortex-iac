@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  cpp_test:
+    container_name: cppTest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: ubuntu:22.04
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/test
+      
+# enter container by command:
+#   docker exec -it b-sh-env "/bin/bash"
