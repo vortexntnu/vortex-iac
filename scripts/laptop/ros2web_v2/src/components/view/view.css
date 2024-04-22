@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.view {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    width: 500px;
+}
+
+.feed {
+    grid-area: 1 / 1 / 2 / 3;
+    aspect-ratio: 16 / 9;
+    border: 2px solid black
+}
+
+.title {
+    grid-area: 2 / 1 / 3 / 2;
+    font-family: monospace;
+    font-size: 12px;
+    text-align: left;
+}
+
+.remove-btn {
+    grid-area: 2 / 2 / 3 / 3;
+}

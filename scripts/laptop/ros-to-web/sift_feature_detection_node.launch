@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/udfc/wrapper/camera_raw/compressed raw out:=/udfc/wrapper/camera_raw" />
+   
+
+    <!-- Sift node -->
+
+</launch>

@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.add_topic {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 10px;
+}
